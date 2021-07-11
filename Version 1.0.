@@ -1,0 +1,46 @@
+# Need to update code
+
+import random
+
+ListofWords = ["Game", "Television", "Egg", "Chicken", "Dad", "Mum", "Elephant", "Spider", "London", "Brazil", "Gentleman", "Queen", "Blackjack"]
+count = 3
+guessedLetters = []
+
+answer = random.choice(ListofWords)
+
+answerList = list(answer.lower())
+
+remaining = len(answer)
+
+print("The word is " + str(remaining) + " letters long.")
+
+while count > 0:
+    guess = input("Guess a letter: ").lower()
+    
+    while True:
+        if guess in ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"]:
+            break
+        else:
+            guess = input("Invaild input. Please enter a letter: ").lower()
+    
+    if guess not in guessedLetters:
+        if guess in answerList:
+            remaining-=1
+            print("Correct!")
+            print(str(remaining) + " letters left!")
+        else:
+            count -=1
+            if count == 1:
+                print("Incorrect! " + str(count) + " guess left!")
+            else:
+                print("Incorrect! " + str(count) + " guesses left!")
+        guessedLetters.append(guess)
+        print("Guessed letters: " + str(guessedLetters))
+        if remaining == 0:
+            print("Congratulations! You won! The answer was " + answer + "!")
+            break
+    else:
+        print("You already guessed that letter. Please guess another letter.")
+
+if remaining != 0:
+    print("Ran out of guesses. You lose!")
